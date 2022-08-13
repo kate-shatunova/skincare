@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Patch, Post, Query} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Patch, Post, Query} from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
 import { ApiTags } from "@nestjs/swagger";
@@ -35,5 +35,8 @@ export class IngredientsController {
   }
 
   // удаление игредиента по ID
-  
+  @Delete(':ingredientId')
+  remove(@Param('ingredientId') ingredientId: number) {
+    return this.ingredientsService.remove(ingredientId);
+  }
 }

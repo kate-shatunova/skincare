@@ -34,4 +34,8 @@ export class IngredientsService {
     return this._ingredients[index];
   }
 
+  remove(ingredientId: number) {
+    this._ingredients = this._ingredients.filter(ingredient => ingredient.ingredientId != ingredientId)
+  }
+
 }
