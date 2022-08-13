@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ingredients } from './entities/ingredients';
-import {Ingredient} from "./ingredient.model";
+import {Ingredient} from "./ingredients.model";
 import {CreateIngredientDto} from "./dto/create-ingredient.dto";
 import {UpdateIngredientDto} from "./dto/update-ingredient.dto";
 

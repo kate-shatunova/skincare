@@ -4,7 +4,7 @@ import { IngredientsService } from './ingredients.service';
 import {ApiOperation, ApiParam, ApiResponse, ApiTags} from "@nestjs/swagger";
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
-import {Ingredient} from "./ingredient.model";
+import {Ingredient} from "./ingredients.model";
 
 @ApiTags('Ingredients')
 @Controller("ingredients")
