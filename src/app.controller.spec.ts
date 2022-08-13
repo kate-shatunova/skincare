@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "SkinCare - лучший помощник в поиске идеального ухода!"', () => {
+      expect(appController.getApplication()).toBe('SkinCare - лучший помощник в поиске идеального ухода!');
     });
   });
 });
