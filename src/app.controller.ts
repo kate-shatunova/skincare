@@ -1,5 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ingredients } from './ingredients';
+import { Param } from '@nestjs/common';
 
 @Controller()
 export class AppController {
@@ -12,6 +14,12 @@ export class AppController {
 
   @Get()
   index() {
-    return { ingredients : [] };
+    return { ingredients };
+  }
+
+  // поиск ингредиентов по названию
+  @Get(':name')
+  getById(@Param('name') name: string) {
+    return ingredients.find(ingredient => ingredient.name.toLowerCase() === name.toLowerCase());
   }
 }
