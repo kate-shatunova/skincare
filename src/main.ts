@@ -7,7 +7,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
       .setTitle('SkinCare API')
-      .setDescription('description')
+      .setDescription('словарь компонентов косметики')
       .setVersion('1.0')
       .build();
 

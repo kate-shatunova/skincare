@@ -1,41 +1,55 @@
-import {Body, Controller, Delete, Get, Patch, Post, Query} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpStatus, Patch, Post, Query} from '@nestjs/common';
 import { Param } from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
-import { ApiTags } from "@nestjs/swagger";
+import {ApiOperation, ApiParam, ApiResponse, ApiTags} from "@nestjs/swagger";
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
+import {Ingredient} from "./ingredient.model";
 
 @ApiTags('Ingredients')
 @Controller("ingredients")
 export class IngredientsController {
   constructor(private readonly ingredientsService: IngredientsService) {}
 
-  // поиск ингредиентов по названию (like)
   @Get('find')
+  @ApiOperation({ summary: "поиск ингредиентов по названию (like)" })
+  @ApiResponse({ status: HttpStatus.OK, description: "Success", type: Array<Ingredient> })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request" })
   findByName(@Query('search') search: string) {
     return this.ingredientsService.findByName(search);
   }
 
-  // получение ингредиента по id
   @Get(':ingredientId')
+  @ApiOperation({ summary: "получение ингредиента по id" })
+  @ApiParam({ name: "ingredientId", required: true, description: "Ingredient identifier" })
+  @ApiResponse({ status: HttpStatus.OK, description: "Success", type: Ingredient })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request" })
   findById(@Param('ingredientId') ingredientId: number) {
     return this.ingredientsService.findById(ingredientId);
   }
 
-  // добавления ингредиента
   @Post()
+  @ApiOperation({ summary: "добавления ингредиента" })
+  @ApiResponse({ status: HttpStatus.OK, description: "Success", type: Ingredient })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request" })
   create(@Body() createIngredientDto: CreateIngredientDto) {
     return this.ingredientsService.create(createIngredientDto);
   }
 
-  // редактирование игредиента
   @Patch(':ingredientId')
+  @ApiOperation({ summary: "редактирование игредиента" })
+  @ApiParam({ name: "ingredientId", required: true, description: "Ingredient identifier" })
+  @ApiResponse({ status: HttpStatus.OK, description: "Success", type: Ingredient })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request" })
   update(@Param('ingredientId') ingredientId: number, @Body() updateIngredientDto: UpdateIngredientDto) {
     return this.ingredientsService.update(ingredientId, updateIngredientDto);
   }
 
-  // удаление игредиента по ID
   @Delete(':ingredientId')
+  @ApiOperation({ summary: "удаление игредиента по ID" })
+  @ApiParam({ name: "ingredientId", required: true, description: "Ingredient identifier" })
+  @ApiResponse({ status: HttpStatus.OK, description: "Success", type: Ingredient })
+  @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request" })
   remove(@Param('ingredientId') ingredientId: number) {
     return this.ingredientsService.remove(ingredientId);
   }
