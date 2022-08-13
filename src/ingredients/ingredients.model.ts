@@ -1,30 +1,29 @@
-import {ApiProperty} from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
+import {Column, DataType, Model, Table} from "sequelize-typescript";
 
-export class Ingredient {
-    @ApiProperty({ description: "Ingredient identifier", nullable: false })
-    ingredientId: number;
+interface IngredientCreationAttrs {
+  name: string;
+}
 
-    @ApiProperty({ description: "Ingredient name", nullable: true })
-    name: string;
+@Table({tableName: 'ingredients'})
+export class Ingredient extends Model<Ingredient, IngredientCreationAttrs> {
+  @ApiProperty({description: "Ingredient identifier", nullable: false})
+  @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
+  id: number;
 
-    @ApiProperty({ description: "Ingredient INCI name", nullable: true })
-    inciName: string;
+  @ApiProperty({description: "Ingredient name", nullable: true})
+  @Column({type: DataType.STRING, unique: true, allowNull: false})
+  name: string;
 
-    @ApiProperty({ description: "Ingredient functionality", nullable: true })
-    functionality: string;
+  @ApiProperty({description: "Ingredient INCI name", nullable: true})
+  @Column({type: DataType.STRING, unique: true, allowNull: true})
+  inciName: string;
 
-    @ApiProperty({ description: "Ingredient description", nullable: true })
-    description: string;
+  @ApiProperty({description: "Ingredient functionality", nullable: true})
+  @Column({type: DataType.ARRAY, allowNull: true})
+  functionality: Array<string>;
 
-    constructor (name: string,
-                 inciName: string,
-                 functionality: string,
-                 description: string,
-                 ingredientId?: number) {
-        this.ingredientId = ingredientId
-        this.name = name;
-        this.inciName = inciName;
-        this.functionality = functionality;
-        this.description = description;
-    }
+  @ApiProperty({description: "Ingredient description", nullable: true})
+  @Column({type: DataType.STRING, allowNull: true})
+  description: string;
 }

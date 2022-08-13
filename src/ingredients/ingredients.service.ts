@@ -13,7 +13,7 @@ export class IngredientsService {
   }
 
   findById(ingredientId: number) {
-    return this._ingredients.filter(ingredient => ingredient.ingredientId == ingredientId)[0];
+    return this._ingredients.filter(ingredient => ingredient.id == ingredientId)[0];
   }
 
   create(dto: CreateIngredientDto) {
@@ -24,7 +24,7 @@ export class IngredientsService {
   }
 
   update(ingredientId: number, dto: UpdateIngredientDto) {
-    const index = this._ingredients.findIndex(ingredient => ingredient.ingredientId == ingredientId)
+    const index = this._ingredients.findIndex(ingredient => ingredient.id == ingredientId)
 
     if (index === -1) {
       return;
@@ -35,7 +35,7 @@ export class IngredientsService {
   }
 
   remove(ingredientId: number) {
-    this._ingredients = this._ingredients.filter(ingredient => ingredient.ingredientId != ingredientId)
+    this._ingredients = this._ingredients.filter(ingredient => ingredient.id != ingredientId)
   }
 
 }
