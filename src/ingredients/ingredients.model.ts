@@ -20,8 +20,8 @@ export class Ingredient extends Model<Ingredient, IngredientCreationAttrs> {
   inciName: string;
 
   @ApiProperty({description: "Ingredient functionality", nullable: true})
-  @Column({type: DataType.ARRAY, allowNull: true})
-  functionality: Array<string>;
+  @Column({type: DataType.STRING, allowNull: true})
+  functionality: string;
 
   @ApiProperty({description: "Ingredient description", nullable: true})
   @Column({type: DataType.STRING, allowNull: true})

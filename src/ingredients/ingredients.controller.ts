@@ -9,7 +9,7 @@ import {Ingredient} from "./ingredients.model";
 @ApiTags('Ingredients')
 @Controller("ingredients")
 export class IngredientsController {
-  constructor(private readonly ingredientsService: IngredientsService) {}
+  constructor(private ingredientsService: IngredientsService) {}
 
   @Get('find')
   @ApiOperation({ summary: "поиск ингредиентов по названию (like)" })

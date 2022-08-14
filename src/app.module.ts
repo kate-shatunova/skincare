@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { IngredientsController } from "./ingredients/ingredients.controller";
-import { IngredientsService } from "./ingredients/ingredients.service";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from "@nestjs/config";
 import {User} from "./users/users.model";
+import {Ingredient} from "./ingredients/ingredients.model";
+import { IngredientsModule } from './ingredients/ingredients.module';
 
 @Module({
   imports: [
@@ -20,12 +20,13 @@ import {User} from "./users/users.model";
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [ User ],
+      models: [ User, Ingredient ],
       autoLoadModels: true
     }),
     UsersModule,
+    IngredientsModule,
   ],
-  controllers: [AppController, IngredientsController],
-  providers: [AppService, IngredientsService]
+  controllers: [AppController],
+  providers: [AppService]
 })
 export class AppModule {}
