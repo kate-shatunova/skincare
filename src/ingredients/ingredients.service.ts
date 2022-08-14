@@ -3,6 +3,7 @@ import {Ingredient} from "./ingredients.model";
 import {CreateIngredientDto} from "./dto/create-ingredient.dto";
 import {UpdateIngredientDto} from "./dto/update-ingredient.dto";
 import {InjectModel} from "@nestjs/sequelize";
+import {Op} from "sequelize";
 
 @Injectable()
 export class IngredientsService {
@@ -10,7 +11,11 @@ export class IngredientsService {
   }
 
   async findByName(searchName: string) {
-    return await this.ingredientRepository.findAll({where: {name: {$like: searchName}}});
+    return await this.ingredientRepository.findAll({
+      where: {
+        name: {[Op.like]: `%${searchName}%`}
+      }
+    });
   }
 
   async findById(ingredientId: number) {

@@ -16,6 +16,7 @@ export class IngredientsController {
   @ApiResponse({ status: HttpStatus.OK, description: "Success", type: Array<Ingredient> })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request" })
   findByName(@Query('search') search: string) {
+    console.log("findByName " + search);
     return this.ingredientsService.findByName(search);
   }
 
