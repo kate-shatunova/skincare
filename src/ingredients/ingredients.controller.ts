@@ -13,7 +13,7 @@ export class IngredientsController {
 
   @Get('find')
   @ApiOperation({ summary: "поиск ингредиентов по названию (like)" })
-  @ApiResponse({ status: HttpStatus.OK, description: "Success", type: Array<Ingredient> })
+  @ApiResponse({ status: HttpStatus.OK, description: "Success", type: [Ingredient] })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: "Bad Request" })
   findByName(@Query('search') search: string) {
     console.log("findByName " + search);
